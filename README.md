@@ -40,7 +40,7 @@ ASOBILinkで「やってみたい遊び」と「場所」を投稿すること�
 - 何か遊びをしたいけど、知らないコミュニティにはいきたくないと感じた時
 
 ## 設計書
-<...>
+https://docs.google.com/spreadsheets/d/1vFe3HwOAj_Ozrnv79En9BZM4Mm249N6LoadsSxSE2sw/edit#gid=1688257285
 
 ## チャレンジ要素一覧
 
