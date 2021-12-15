@@ -1,0 +1,2 @@
+class AsobisController < ApplicationController
+end
