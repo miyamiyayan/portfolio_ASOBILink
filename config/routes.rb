@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  
+  root to: 'homes#top'
+
+
   devise_for :members, controllers: {
         sessions: 'members/sessions'
       }
