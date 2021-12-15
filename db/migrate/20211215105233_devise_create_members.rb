@@ -13,6 +13,7 @@ class DeviseCreateMembers < ActiveRecord::Migration[5.2]
       t.string :postal_code,        null: false, default: ""
       t.string :user_name,          null: false, default: ""
       t.boolean :is_active,         null: false, default: "TRUE"
+
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
