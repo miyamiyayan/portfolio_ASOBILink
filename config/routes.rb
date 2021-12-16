@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  
+
   root to: 'homes#top'
+  resources :asobis
 
 
   devise_for :members, controllers: {
