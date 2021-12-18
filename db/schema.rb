@@ -10,14 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_16_153415) do
+ActiveRecord::Schema.define(version: 2021_12_18_014700) do
 
   create_table "games", force: :cascade do |t|
     t.integer "member_id", null: false
     t.string "title", default: "", null: false
     t.string "address", default: "", null: false
-    t.float "latitude", null: false
-    t.float "longitude", null: false
     t.string "number", default: "", null: false
     t.string "image_id", default: "", null: false
     t.datetime "created_at", null: false

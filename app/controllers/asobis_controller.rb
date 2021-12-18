@@ -9,9 +9,30 @@ class AsobisController < ApplicationController
   end
 
   def create
-    game = Game.new(asobi_params)
-    game.save
-    redirect_to asobi_path(asobi.id)
+    @game = Game.new(game_params)
+    @game.member_id = current_member.id
+    @game.save
+    redirect_to asobis_path
   end
+
+  def show
+    @game = Game.find(params[:id])
+  end
+
+  def edit
+    @game = Game.find(params[:id])
+  end
+
+  def update
+    game = Game.find(params[:id])
+    game.update(game_params)
+    redirect_to asobi_path
+  end
+
+private
+
+ def game_params
+   params.require(:game).permit(:member_id, :title, :address, :number, :image, :introduction, :is_active)
+ end
 
 end
