@@ -1,0 +1,44 @@
+<div class="container-md">
+  <div class="row">
+    <div class="col-md-3">
+      <h3 class="bg-light text-dark text-center">遊び詳細</h3>
+    </div>
+  </div>
+
+
+<div class="container-md">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-11">
+      <div class='row'>
+        <div class='col-md-2'><h5>タイトル</h5></div>
+        <div class='col-md-9'><h5><%= @game.title %></h5></div>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'><h5>募集状況</h5></div>
+        <div class='col-md-2'><h5><%= @game.is_active ? '参加受付中':'募集終了' %></h5></div>
+        <div class='col-md-1'><h5>人数</h5></div>
+        <div class='col-md-1'><h5><%= @game.number %>人</h5></div>
+        <div class='col-md-2'><h5>投稿者</h5></div>
+        <div class='col-md-3'><%= @game.member.user_name %>さん</div>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'><h5>内容詳細</h5></div>
+        <div class='col-md-9'><%= @game.introduction %></div>
+      </div>
+      <div class='row'>
+        <div class='col-md-2'><h5>場所</h5></div>
+        <div class='col-md-9'><%= @game.address %></div>
+      </div>
+      <div class='row'>
+        <div class="col-md-4">
+          <%= attachment_image_tag @game, :image, :fill, 350, 280, format: 'jpeg' %>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+          <%= link_to "編集する", edit_asobi_path(@game.id), class: "btn btn-success btn-lg" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
