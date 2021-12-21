@@ -29,6 +29,12 @@ class AsobisController < ApplicationController
     redirect_to asobi_path
   end
 
+  def destroy
+    game = Game.find(params[:id])
+    game.destroy
+    redirect_to asobis_path
+  end
+
 private
 
  def game_params
