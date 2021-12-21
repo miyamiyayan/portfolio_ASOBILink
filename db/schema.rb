@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_18_014700) do
+ActiveRecord::Schema.define(version: 2021_12_21_141048) do
 
   create_table "games", force: :cascade do |t|
     t.integer "member_id", null: false
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2021_12_18_014700) do
     t.string "first_name_kana", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "postal_code", default: "", null: false
     t.string "user_name", default: "", null: false
     t.boolean "is_active", default: true, null: false
     t.string "reset_password_token"
