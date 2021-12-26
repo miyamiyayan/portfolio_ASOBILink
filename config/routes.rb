@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   resources :asobis do
     resources :post_comments, only: [:create, :destroy]
+    resource :joins, only: [:create, :destroy]
   end
 
   # マイページと編集

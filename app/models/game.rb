@@ -6,4 +6,9 @@ class Game < ApplicationRecord
 
   attachment :image
 
+
+  def joined_by?(member)
+    joins.where(member_id: member.id).exists?
+  end
+
 end

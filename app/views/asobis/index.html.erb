@@ -28,6 +28,8 @@
           投稿日時：<%= game.updated_at.strftime("%Y-%m-%d %H:%M") %>
           <br>
           コメント数：<%= game.post_comments.count %>
+          <br>
+          参加希望：<%= game.joins.count %> 人
         </p>
       </div>
     </div>

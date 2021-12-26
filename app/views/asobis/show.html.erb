@@ -4,6 +4,7 @@
       <h3 class="bg-light text-dark text-center">遊び詳細</h3>
     </div>
   </div>
+</div>
 
 <!--以下遊び詳細-->
 <div class="container-md">
@@ -66,6 +67,24 @@
         <%= f.text_area :comment, rows:'2',placeholder: "コメントをここに" %>
         <%= f.submit "送信する" %>
       <% end %>
+    </div>
+  </div>
+</div>
+
+<!--参加希望数-->
+<div class="container-md">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-11">
+        <% if @game.joined_by?(current_member) %>
+            <%= link_to asobi_joins_path(@game), method: :delete do %>
+              参加希望：<%= @game.joins.count %> 人
+            <% end %>
+        <% else %>
+            <%= link_to asobi_joins_path(@game), method: :post do %>
+              参加希望：<%= @game.joins.count %> 人
+            <% end %>
+        <% end %>
     </div>
   </div>
 </div>
