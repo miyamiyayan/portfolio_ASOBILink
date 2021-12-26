@@ -1,0 +1,19 @@
+<div class="container-md mb-5">
+  <div class="row" style="height:300px;">
+    <div class="col-md-12 h2 d-flex align-items-center justify-content-center">
+      <%= @member.user_name %>さん、本当に退会しますか？
+    </div>
+    <div class="col-md-12 h4 d-flex align-items-center justify-content-center">
+      退会しても投稿履歴は消えません。</br>
+      ※ユーザーネームに（退会済み）と記載され退会したことがわかるようになります。</br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <%= link_to '退会しない', customers_path, class: "btn btn-primary btn-lg mr-3"%>
+      <%= link_to '退会する', customers_withdraw_path, method: :patch, "data-confirm" => "本当に退会してよろしいですか？", class: "btn btn-danger btn-lg"%>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>

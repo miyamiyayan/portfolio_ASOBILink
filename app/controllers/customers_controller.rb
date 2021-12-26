@@ -11,7 +11,7 @@ class CustomersController < ApplicationController
   def update
     member = Member.find(current_member.id)
     member.update(member_params)
-    redirect_to members_path
+    redirect_to customers_path
   end
 
   def confirm

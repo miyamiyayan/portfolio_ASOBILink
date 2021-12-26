@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
   root to: 'homes#top'
-  resources :asobis
+  resources :asobis do
+    resources :post_comments, only: [:create, :destroy]
+  end
 
   # マイページと編集
   get "/customers/" => 'customers#show'
-  get "/customers/edit" => 'customers#edit'
   patch "/customers/" => 'customers#update'
+  get "/customers/edit" => 'customers#edit'
   get "/customers/confirm" => 'customers#confirm'
   patch "/customers/withdraw" => 'customers#withdraw'
 

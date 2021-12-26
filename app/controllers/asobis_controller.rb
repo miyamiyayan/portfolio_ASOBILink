@@ -1,7 +1,7 @@
 class AsobisController < ApplicationController
 
   def index
-    @games = Game.all
+    @games = Game.order(updated_at: :desc).page(params[:page]).per(9)
   end
 
   def new
@@ -17,6 +17,7 @@ class AsobisController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @post_comment = PostComment.new
   end
 
   def edit

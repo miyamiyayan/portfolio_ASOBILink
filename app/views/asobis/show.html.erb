@@ -5,7 +5,7 @@
     </div>
   </div>
 
-
+<!--以下遊び詳細-->
 <div class="container-md">
   <div class="row">
     <div class="col-md-1"></div>
@@ -39,6 +39,30 @@
           <%= link_to "編集する", edit_asobi_path(@game.id), class: "btn btn-success btn-lg" %>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!--以下コメントとコメント記載-->
+<div class="container-md">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-11">
+      <p>コメント件数：<%= @game.post_comments.count %></p>
+        <% @game.post_comments.each do |post_comment| %>
+          <%= post_comment.member.user_name %>
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+          <%= post_comment.comment %>
+        <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-11">
+      <%= form_with model:[@game, @post_comment], url:asobi_post_comments_path(@game), local: true do |f| %>
+        <%= f.text_area :comment, rows:'2',placeholder: "コメントをここに" %>
+        <%= f.submit "送信する" %>
+      <% end %>
     </div>
   </div>
 </div>
