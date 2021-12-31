@@ -1,0 +1,9 @@
+        <% if @game.joined_by?(current_member) %>
+            <%= link_to asobi_joins_path(@game), method: :delete, remote: true do %>
+              参加希望：<%= @game.joins.count %> 人
+            <% end %>
+        <% else %>
+            <%= link_to asobi_joins_path(@game), method: :post, remote: true do %>
+              参加希望：<%= @game.joins.count %> 人
+            <% end %>
+        <% end %>
