@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   root to: 'homes#top'
+
+  resources :notifications, only: [:index]
+  # delete "/notifications/destroy_all" => 'notifications#destroy_all'
   resources :asobis do
     resources :post_comments, only: [:create, :destroy]
     resource :joins, only: [:create, :destroy]

@@ -1,0 +1,23 @@
+<div class="container-md">
+  <div class="row">
+    <div class="col-md-3 h3">通知</div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-11">
+      <%= link_to notifications_destroy_all_path, method: :delete do %>
+        <h7 style="color: black;">全削除</h7>
+      <% end %>
+      <hr>
+      <% if @notifications.exists? %>
+        <div class="users-index">
+          <%= render @notifications %>
+        </div>
+      <% else %>
+        <p>通知はありません</p>
+      <% end %>
+    </div>
+  </div>
+
+</div>

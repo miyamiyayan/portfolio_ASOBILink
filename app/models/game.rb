@@ -10,7 +10,7 @@ class Game < ApplicationRecord
 
 
   def joined_by?(member)
-    joins.where(member_id: member.id).exists?
+      joins.where(member_id: member.id).exists?
   end
 
 end
