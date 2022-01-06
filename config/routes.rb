@@ -9,13 +9,15 @@ Rails.application.routes.draw do
     resource :joins, only: [:create, :destroy]
   end
 
+  # 検索機能
+  get 'search' => 'asobis#search'
+
   # マイページと編集
   get "/customers/" => 'customers#show'
   patch "/customers/" => 'customers#update'
   get "/customers/edit" => 'customers#edit'
   get "/customers/confirm" => 'customers#confirm'
   patch "/customers/withdraw" => 'customers#withdraw'
-
 
   devise_for :members, controllers: {
         sessions: 'members/sessions'

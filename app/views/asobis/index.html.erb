@@ -9,6 +9,17 @@
 </div>
 
 <div class="container-md">
+  <div class="row">
+    <div class="col-md-4">
+      <%= form_with url: search_path, method: :get, local: true do |f| %>
+        <%= f.text_field :keyword, value: @keyword %>
+        <%= f.submit "検索" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container-md">
   <div class="card-columns">
 
   <% @games.each do |game| %>

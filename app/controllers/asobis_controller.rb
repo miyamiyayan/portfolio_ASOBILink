@@ -36,6 +36,12 @@ class AsobisController < ApplicationController
     redirect_to asobis_path
   end
 
+  def search
+    @keyword = params[:keyword]
+    @games = Game.search(params[:keyword])
+    render "index"
+  end
+
 private
 
  def game_params
