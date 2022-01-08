@@ -17,4 +17,40 @@ class Game < ApplicationRecord
       where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
   end
 
+  def create_notification_join!(current_member)
+        temp = Notification.where(["visitor_id = ? and visited_id = ? and game_id = ? and action = ? ", current_member.id, member_id, id, 'join'])
+      if temp.blank?
+        notification = current_member.active_notifications.new(
+        game_id: id,
+        visited_id: member_id,
+        action: 'join'
+        )
+        if notification.visitor_id == notification.visited_id
+          notification.checked = true
+        end
+      notification.save if notification.valid?
+      end
+  end
+
+  def create_notification_comment!(current_member, post_comment_id)
+        temp_ids = PostComment.select(:member_id).where(game_id: id).where.not(member_id: current_member.id).distinct
+        temp_ids.each do |temp_id|
+          save_notification_comment!(current_member, post_comment_id, temp_id['member_id'])
+        end
+      save_notification_comment!(current_member, post_comment_id, member_id) if temp_ids.blank?
+  end
+
+  def save_notification_comment!(current_member, post_comment_id, visited_id)
+        notification = current_member.active_notifications.new(
+          game_id: id,
+          post_comment_id: post_comment_id,
+          visited_id: visited_id,
+          action: 'comment'
+        )
+        if notification.visitor_id == notification.visited_id
+           notification.checked = true
+        end
+      notification.save if notification.valid?
+  end
+
 end

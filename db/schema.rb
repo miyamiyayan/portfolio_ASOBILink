@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_03_131709) do
+ActiveRecord::Schema.define(version: 2022_01_08_105959) do
 
   create_table "games", force: :cascade do |t|
     t.integer "member_id", null: false
@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(version: 2022_01_03_131709) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "visiter_id"
+    t.integer "visitor_id"
     t.integer "visited_id"
     t.integer "game_id"
-    t.integer "comment_id"
+    t.integer "post_comment_id"
     t.string "action"
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false

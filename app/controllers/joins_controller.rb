@@ -4,6 +4,7 @@ class JoinsController < ApplicationController
     @game = Game.find(params[:asobi_id])
     join = current_member.joins.new(game_id: @game.id)
     join.save
+    @game.create_notification_join!(current_member)
   end
 
   def destroy

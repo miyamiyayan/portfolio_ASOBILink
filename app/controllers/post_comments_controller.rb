@@ -5,6 +5,9 @@ class PostCommentsController < ApplicationController
     @comment = current_member.post_comments.new(post_comment_params)
     @comment.game_id = @game.id
     @comment.save
+
+    @game.create_notification_comment!(current_member, @comment.id)
+
     redirect_to asobi_path(@game)
   end
 
