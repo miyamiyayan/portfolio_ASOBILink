@@ -1,1 +1,2 @@
-$("join_buttons_<%= @game.id %>").html("<%= j(render partial: 'joins/joins', game: @game) %>");
+<!--$(document).on ("turbolinks:load", function(){-->
+$("#join_buttons_<%= @game.id %>").html("<%= j(render partial: 'joins/joins', game: @game) %>");

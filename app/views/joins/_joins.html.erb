@@ -7,3 +7,8 @@
               参加希望：<%= @game.joins.count %> 人
             <% end %>
         <% end %>
+
+        <% @game.joins.each do |joins| %>
+        <%= joins.member.user_name %>,
+        <% end %>
+
