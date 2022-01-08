@@ -20,21 +20,37 @@
         <a class="navbar-brand" href="/">ASOBILink</a>
         <div>
           <ul class="navbar-nav ml-auto">
-            <li class="header_rist">
-              <%= link_to "マイページ", href="/", class: "btn btn-info btn-sm" %>
-            </li>
-            <li class="header_rist">
-              <%= link_to "商品一覧", href="/", class: "btn btn-info btn-sm" %>
-            </li>
-            <li class="header_rist">
-              <%= link_to "カート",  href="/", class: "btn btn-info btn-sm" %>
-            </li>
-            <li class="header_rist">
-              <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-info btn-sm" %>
-            </li>
-            <li class="header_rist">
-              <%= link_to "ログイン", member_session_path, class: "btn btn-info btn-sm" %>
-            </li>
+
+         <!--サインインの場合-->
+            <% if member_signed_in? %>
+              <li class="header_rist">
+                <%= link_to "探す", asobis_path, class: "btn btn-info btn-sm" %>
+              </li>
+              <li class="header_rist">
+                <%= link_to "投稿する", new_asobi_path, class: "btn btn-info btn-sm" %>
+              </li>
+              <li class="header_rist">
+                <%= link_to "通知", notifications_path, class: "btn btn-info btn-sm" %>
+              </li>
+              <li class="header_rist">
+                <%= link_to "マイページ", customers_path, class: "btn btn-info btn-sm" %>
+              </li>
+              <li class="header_rist">
+                <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-info btn-sm" %>
+              </li>
+
+          <!--サインイン前-->
+            <% else %>
+              <li class="header_rist">
+                <%= link_to "トップ", href="/", class: "btn btn-info btn-sm" %>
+              </li>
+              <li class="header_rist">
+                <%= link_to "探す", asobis_path, class: "btn btn-info btn-sm" %>
+              </li>
+              <li class="header_rist">
+                <%= link_to "ログイン", new_member_session_path, class: "btn btn-info btn-sm" %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>

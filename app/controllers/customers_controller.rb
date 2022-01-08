@@ -6,6 +6,7 @@ class CustomersController < ApplicationController
 
   def show
     @member = Member.find(current_member.id)
+    @games = Game.find(current_member.id)
   end
 
   def update

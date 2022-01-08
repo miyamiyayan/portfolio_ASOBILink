@@ -9,6 +9,7 @@
     </div>
   </div>
 
+<% if member_signed_in? %>
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-2" style="height:130px;">
@@ -33,5 +34,22 @@
     </div>
     <div class="col-md-1"></div>
   </div>
+
+<% else %>
+
+ <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-2" style="height:130px;">
+      <%= link_to "", asobis_path, class: "fas fa-dice fa-5x" %>
+      <p>遊びを見る</p>
+    </div>
+    <div class="col-md-2" style="height:130px;">
+      <a class="fas fa-sign-in-alt fa-5x" href="/members/sign_in"></a><br>
+      <p>ログイン</p>
+    </div>
+    <div class="col-md-5"></div>
+  </div>
+
+<% end %>
 
 </div>
