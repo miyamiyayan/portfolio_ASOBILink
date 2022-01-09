@@ -1,7 +1,7 @@
 class AsobisController < ApplicationController
 
   def index
-    @games = Game.order(updated_at: :desc).page(params[:page]).per(9)
+    @games = Game.where(is_active: true).order(updated_at: :desc).page(params[:page]).per(9)
   end
 
   def new

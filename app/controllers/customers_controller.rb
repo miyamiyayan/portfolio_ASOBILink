@@ -6,7 +6,8 @@ class CustomersController < ApplicationController
 
   def show
     @member = Member.find(current_member.id)
-    @games = Game.find(current_member.id)
+    @games = Game.where(member_id: current_member.id).order(updated_at: :desc).page(params[:page]).per(10)
+    @join = Join.where(member_id: current_member.id).order(updated_at: :desc).page(params[:page]).per(10)
   end
 
   def update
