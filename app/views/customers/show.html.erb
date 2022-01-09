@@ -59,7 +59,7 @@
             <tr scope="col">
               <td class="p-2">
                 <%= link_to asobi_path(game.id) do %>
-                  <%= game.title %>
+                  <%= truncate(game.title, length:20) %>
                 <% end %>
               </td>
               <td class="p-2">
@@ -99,7 +99,7 @@
             <tr scope="col">
               <td class="p-2">
                 <%= link_to asobi_path(join.game.id) do %>
-                  <%= join.game.title %>
+                  <%= truncate(join.game.title, length:20) %>
                 <% end %>
               </td>
               <td class="p-2">
@@ -109,7 +109,7 @@
                 <%= join.game.joins.count %>
               </td>
               <td class="p-2">
-                <%= join.game.address %>
+                <%= truncate(join.game.address, length:14) %>
               </td>
               <td class="p-2">
                 <%= join.game.is_active ? '受付中' :'停止'  %>

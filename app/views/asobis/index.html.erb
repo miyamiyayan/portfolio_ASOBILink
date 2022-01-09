@@ -1,8 +1,8 @@
 <div class="container-md">
   <div class="row">
     <div class="col-md-3 h3">遊び一覧</div>
-    <div class="col-md-6 h3"></div>
-    <div class="col-md-3 h5">
+    <div class="col-md-7 h3"></div>
+    <div class="col-md-2 h5">
       <%= link_to "遊びを追加", new_asobi_path, class: "btn btn-info btn-sm" %>
     </div>
   </div>
@@ -10,8 +10,8 @@
 
 <div class="container-md">
   <div class="row">
-    <div class="col-md-8"></div>
-    <div class="col-md-4">
+    <div class="col-md-9"></div>
+    <div class="col-md-3">
       <%= form_with url: search_path, method: :get, local: true do |f| %>
         <%= f.text_field :keyword, value: @keyword %>
         <%= f.submit "検索" %>
@@ -21,27 +21,23 @@
 </div>
 
 <div class="container-md">
+  <div class="row row-cols-1 row-cols-md-12">
   <div class="card-columns">
-
-  <% @games.each do |game| %>
+    <% @games.each do |game| %>
       <div class="card" style="width:300px;">
         <%= link_to asobi_path(game.id) do %>
           <%= attachment_image_tag game, :image, :fill, 298, 150, format: 'jpeg' %>
       <div class="card-body">
         <h4 class="card-title">
-          <%= game.title %>
+          <%= truncate(game.title, length:13) %>
         </h4>
     <% end %>
         <p class="card-text">
-          場所：<%= game.address %>
+          場所：<%= truncate(game.address, length:15) %>
           <br>
-          募集人数：<%= game.number %>人
+          参加：<%= game.joins.count %>/<%= game.number %>人　コメント数：<%= game.post_comments.count %>
           <br>
-          投稿日時：<%= game.updated_at.strftime("%Y-%m-%d %H:%M") %>
-          <br>
-          コメント数：<%= game.post_comments.count %>
-          <br>
-          参加希望：<%= game.joins.count %> 人
+          投稿者：<%= game.member.user_name %>
         </p>
       </div>
     </div>

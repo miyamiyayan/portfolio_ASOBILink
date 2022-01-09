@@ -32,15 +32,6 @@
       <%= f.label :number, "参加人数", class: 'col-md-3 col-form-label' %>
       <%= f.text_field :number, :placeholder => "5", class: 'col-md-5 col-form-label' %><span class="d-flex align-items-center">人</span>
     </div>
-    <div class="form-group row">
-      <%= f.label :is_active, "参加受付中or募集終了", class: 'col-md-3 col-form-label' %>
-      <span class="col-md-5 col-form-label">
-        <%= f.radio_button :is_active, :true %>
-          <%= f.label :is_active, "参加受付中" %>
-        <%= f.radio_button :is_active, :false %>
-          <%= f.label :is_active, "募集終了" %>
-      </span>
-    </div>
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4">

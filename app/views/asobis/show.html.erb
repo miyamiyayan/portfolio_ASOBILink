@@ -1,45 +1,59 @@
-<div class="container-md">
+<div class="container-md mb-3">
   <div class="row">
     <div class="col-md-3">
       <h3 class="bg-light text-dark text-center">遊び詳細</h3>
     </div>
+    <div class="col-md-7"></div>
+      <% if @game.member == current_member %>
+        <div class="col-md-2">
+          <%= link_to "編集する", edit_asobi_path(@game.id), class: "btn btn-success btn-lg" %>
+        </div>
+      <% end %>
   </div>
 </div>
 
 <!--以下遊び詳細-->
 <div class="container-md">
   <div class="row">
-    <div class="col-md-1"></div>
+    <div class="col-md-4 img-container">
+      <%= attachment_image_tag @game, :image, format: 'jpeg' %>
+    </div>
+    <div class="col-md-7">
+      <table class="table col-md-12 table-bordered">
+        <tr>
+          <th class="table-secondary col-md-2">タイトル</th>
+          <td class="col-md-8"><%= @game.title %></td>
+        </tr>
+        <tr>
+          <th class="table-secondary col-md-2">内容詳細</th>
+          <td class="col-md-8"><%= @game.introduction %></td>
+        </tr>
+        <tr>
+          <th class="table-secondary col-md-2">場　　所</th>
+          <td class="col-md-8"><%= @game.address %></td>
+        </tr>
+        <tr>
+          <th class="table-secondary col-md-2">投 稿 者</th>
+          <td class="col-md-8"><%= @game.member.user_name %></td>
+        </tr>
+        <tr>
+          <th class="table-secondary col-md-2">募集人数</th>
+          <td class="col-md-8"><%= @game.number %>人（<%= @game.joins.count %>人が参加表明中）</td>
+        </tr>
+      </table>
+      <p>投稿日時：<%= @game.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+    <% if @game.member != current_member %>
+      <span id="join_buttons_<%= @game.id %>"><%= render "joins/joins" %></span>
+    <% end %>
+  </div>
+</div>
+
+</br>
+
+<div class="container-md">
+  <div class="row">
     <div class="col-md-11">
-      <div class='row'>
-        <div class='col-md-2'><h5>タイトル</h5></div>
-        <div class='col-md-9'><h5><%= @game.title %></h5></div>
-      </div>
-      <div class='row'>
-        <div class='col-md-2'><h5>募集状況</h5></div>
-        <div class='col-md-2'><h5><%= @game.is_active ? '参加受付中':'募集終了' %></h5></div>
-        <div class='col-md-1'><h5>人数</h5></div>
-        <div class='col-md-1'><h5><%= @game.number %>人</h5></div>
-        <div class='col-md-2'><h5>投稿者</h5></div>
-        <div class='col-md-3'><%= @game.member.user_name %>さん</div>
-      </div>
-      <div class='row'>
-        <div class='col-md-2'><h5>内容詳細</h5></div>
-        <div class='col-md-9'><%= @game.introduction %></div>
-      </div>
-      <div class='row'>
-        <div class='col-md-2'><h5>場所</h5></div>
-        <div class='col-md-9'><%= @game.address %></div>
-      </div>
-      <div class='row'>
-        <div class="col-md-4">
-          <%= attachment_image_tag @game, :image, :fill, 350, 280, format: 'jpeg' %>
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-4">
-          <%= link_to "編集する", edit_asobi_path(@game.id), class: "btn btn-success btn-lg" %>
-        </div>
-      </div>
+      <p>コメント件数：<%= @game.post_comments.count %></p>
     </div>
   </div>
 </div>
@@ -47,35 +61,40 @@
 <!--以下コメントとコメント記載-->
 <div class="container-md">
   <div class="row">
-    <div class="col-md-1"></div>
     <div class="col-md-11">
-      <p>コメント件数：<%= @game.post_comments.count %></p>
-        <% @game.post_comments.each do |post_comment| %>
-          <%= post_comment.member.user_name %>
-          <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-          <%= post_comment.comment %>
-            <% if post_comment.member == current_member %>
-                <%= link_to "削除", asobi_post_comment_path(post_comment.game, post_comment), method: :delete %>
-            <% end %>
-        <% end %>
+      <table class="table col-md-12 table-bordered">
+        <thead class="table-secondary">
+          <tr>
+            <th style="width: 60%" scope="col">コメント</th>
+            <th style="width: 23%" scope="col">ユーザー</th>
+            <th style="width: 11%" scope="col">投稿日時</th>
+            <th style="width: 6%" scope="col">　</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @game.post_comments.each do |post_comment| %>
+            <tr scope="col">
+              <td class="p-2"><%= post_comment.comment %></td>
+              <td class="p-2"><%= post_comment.member.user_name %></td>
+              <td class="p-2"><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+              <% if post_comment.member == current_member %>
+                <td class="p-2"><%= link_to "削除", asobi_post_comment_path(post_comment.game, post_comment), method: :delete %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
   <div class="row">
     <div class="col-md-1"></div>
-    <div class="col-md-11">
+    <div class="col-md-7">
       <%= form_with model:[@game, @post_comment], url:asobi_post_comments_path(@game), local: true do |f| %>
-        <%= f.text_area :comment, rows:'2',placeholder: "コメントをここに" %>
+        <%= f.text_area :comment, rows:'2', class: "form-control", placeholder: "コメントをここに" %>
+    </div>
+    <div class="col-md-2">
         <%= f.submit "送信する" %>
       <% end %>
-    </div>
-  </div>
-</div>
-
-<div class="container-md">
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-11">
-      <span id="join_buttons_<%= @game.id %>"><%= render "joins/joins" %></span>
     </div>
   </div>
 </div>

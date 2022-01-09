@@ -22,6 +22,11 @@ class AsobisController < ApplicationController
 
   def edit
     @game = Game.find(params[:id])
+      if current_member == @game.member
+        render :edit
+      else
+        redirect_to asobis_path
+      end
   end
 
   def update
@@ -39,7 +44,7 @@ class AsobisController < ApplicationController
   def search
     @keyword = params[:keyword]
     @games = Game.search(params[:keyword])
-    render "index"
+      render :index
   end
 
 private
