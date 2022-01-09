@@ -1,28 +1,31 @@
-
-<li>
-<% notifications.each do |notification| %>
-  <% case notification.action %>
-  <% when 'comment' then %>
-    <h2>
-      <%= notification.visitor.user_name %>より
-      <%= link_to asobi_path(notification.game.id) do %>
-        <%= notification.game.title %>
-      <% end %>
-      にコメントが届きました。
-    </h2>
-    <p class="n-time"><%= time_ago_in_words(notification.created_at).upcase %>前</p>
-  <% when 'join' then %>
-    <h2>
-      <%= notification.visitor.user_name %>が
-      <%= link_to asobi_path(notification.game.id) do %>
-        <%= notification.game.title %>
-      <% end %>
-      に参加希望を表明しました。
-    </h2>
-    <p class="n-time"><%= time_ago_in_words(notification.created_at).upcase %>前</p>
+  <% notifications.each do |notification| %>
+    <% case notification.action %>
+    <% when 'comment' then %>
+      <tr>
+        <td class="p-2">
+          <%= notification.visitor.user_name %>より
+          <%= link_to asobi_path(notification.game.id) do %>
+            <%= notification.game.title %>
+          <% end %>
+          に対して以下のコメントが届きました。
+          (<%= time_ago_in_words(notification.created_at).upcase %>前)
+        <br>
+          <p class="text-info">
+            &emsp;<%= notification.post_comment.comment %>
+          </p>
+        </td>
+      </tr>
+    <% when 'join' then %>
+      <tr>
+        <td class="p-2">
+          <%= notification.visitor.user_name %>が
+          <%= link_to asobi_path(notification.game.id) do %>
+            <%= notification.game.title %>
+          <% end %>
+          に<span class="text-success">参加希望</span>を表明しました。
+          (<%= time_ago_in_words(notification.created_at).upcase %>前)
+        </td>
+      </tr>
+    <% end %>
   <% end %>
-<% end %>
-</li>
-
-  <!--%= notification_form(notification) %>-->
-<!--% end %>-->
+</tr>
