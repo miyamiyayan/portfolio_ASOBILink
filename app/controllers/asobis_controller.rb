@@ -1,5 +1,7 @@
 class AsobisController < ApplicationController
 
+  before_action :authenticate_member!, except: [:index]
+
   def index
     @games = Game.where(is_active: true).order(updated_at: :desc).page(params[:page]).per(9)
   end
@@ -42,8 +44,8 @@ class AsobisController < ApplicationController
   end
 
   def search
+    @games = Game.search(params[:keyword]).where(is_active: true).order(updated_at: :desc).page(params[:page]).per(9)
     @keyword = params[:keyword]
-    @games = Game.search(params[:keyword])
       render :index
   end
 

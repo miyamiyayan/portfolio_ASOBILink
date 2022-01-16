@@ -10,28 +10,24 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-1"></div>
+    <div class="col-md-2"></div>
     <div class="col-md-2" style="height:130px;">
       <%= link_to "", asobis_path, class: "fas fa-dice fa-5x" %>
       <p>遊びを探す</p>
+    </div>
+    <div class="col-md-2" style="height:130px;">
+      <%= link_to "", new_asobi_path, class: "fas fa-plus-square fa-5x" %>
+      <p>投稿</p>
     </div>
     <div class="col-md-2" style="height:130px;">
       <%= link_to "", notifications_path, class: "fas fa-hand-paper fa-5x" %>
       <p>通知</p>
     </div>
     <div class="col-md-2" style="height:130px;">
-      <a class="fas fa-plus-square fa-5x" href="/"></a><br>
-      <p>投稿</p>
-    </div>
-    <div class="col-md-2" style="height:130px;">
-      <a class="fas fa-sign-in-alt fa-5x" href="/members/sign_in"></a><br>
-      <p>ログイン</p>
-    </div>
-    <div class="col-md-2" style="height:130px;">
       <%= link_to "", customers_path, class: "fas fa-address-card fa-5x" %>
       <p>登録情報更新</p>
     </div>
-    <div class="col-md-1"></div>
+    <div class="col-md-2"></div>
   </div>
 
 <% else %>

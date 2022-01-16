@@ -44,6 +44,13 @@
       <p>投稿日時：<%= @game.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
     <% if @game.member != current_member %>
       <span id="join_buttons_<%= @game.id %>"><%= render "joins/joins" %></span>
+    <% else %>
+      <span>
+        参加希望：<%= @game.joins.count %> 人
+        <% @game.joins.each do |joins| %>
+          &nbsp;<%= joins.member.user_name %>,
+        <% end %>
+      </span>
     <% end %>
   </div>
 </div>
@@ -86,15 +93,18 @@
       </table>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-7">
-      <%= form_with model:[@game, @post_comment], url:asobi_post_comments_path(@game), local: true do |f| %>
+</div>
+
+<div class="container-md mb-4">
+  <%= form_with model:[@game, @post_comment], url:asobi_post_comments_path(@game), local: true do |f| %>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-7">
         <%= f.text_area :comment, rows:'2', class: "form-control", placeholder: "コメントをここに" %>
-    </div>
-    <div class="col-md-2">
+      </div>
+      <div class="col-md-2">
         <%= f.submit "送信する" %>
-      <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>

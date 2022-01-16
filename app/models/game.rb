@@ -14,7 +14,7 @@ class Game < ApplicationRecord
   end
 
   def self.search(keyword)
-      where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
+    where(["title like? OR introduction like? OR address like?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
   end
 
   def create_notification_join!(current_member)
@@ -52,5 +52,9 @@ class Game < ApplicationRecord
         end
       notification.save if notification.valid?
   end
+
+  validates :image_id, {presence: true}
+  validates :title, {presence: true}
+  validates :number, {presence: true}
 
 end

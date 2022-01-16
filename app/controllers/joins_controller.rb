@@ -1,5 +1,7 @@
 class JoinsController < ApplicationController
 
+  before_action :authenticate_member!
+
   def create
     @game = Game.find(params[:asobi_id])
     join = current_member.joins.new(game_id: @game.id)
