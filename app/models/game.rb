@@ -8,6 +8,10 @@ class Game < ApplicationRecord
 
   attachment :image
 
+  validates :title, {presence:true, length:{maximum:30}}
+  validates :number,numericality: { only_integer: true,　greater_than: 0, less_than: 100}
+  validates :address, {presence:true, length:{maximum:80}}
+  validates :introduction, {presence:true, length:{maximum:130}}
 
   def joined_by?(member)
       joins.where(member_id: member.id).exists?
@@ -52,9 +56,5 @@ class Game < ApplicationRecord
         end
       notification.save if notification.valid?
   end
-
-  validates :image_id, {presence: true}
-  validates :title, {presence: true}
-  validates :number, {presence: true}
 
 end

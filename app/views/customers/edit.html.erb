@@ -6,6 +6,20 @@
     </div>
   </div>
 
+  <% if @member.errors.any? %>
+    <div class="container-md">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8 alert">
+          <ul>
+            <% @member.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
   </br>
 
   <div class="row">

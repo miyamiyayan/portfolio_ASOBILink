@@ -13,9 +13,12 @@ class CustomersController < ApplicationController
   end
 
   def update
-    member = Member.find(current_member.id)
-    member.update(member_params)
-    redirect_to customers_path
+    @member = Member.find(current_member.id)
+    if  @member.update(member_params)
+      redirect_to customers_path
+    else
+      render :edit
+    end
   end
 
   def confirm

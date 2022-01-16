@@ -1,6 +1,6 @@
 class AsobisController < ApplicationController
 
-  before_action :authenticate_member!, except: [:index]
+  before_action :authenticate_member!, except: [:index , :search]
 
   def index
     @games = Game.where(is_active: true).order(updated_at: :desc).page(params[:page]).per(9)
@@ -13,8 +13,11 @@ class AsobisController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.member_id = current_member.id
-    @game.save
-    redirect_to asobis_path
+    if  @game.save
+      redirect_to asobi_path(@game.id)
+    else
+      render :new
+    end
   end
 
   def show
@@ -32,9 +35,12 @@ class AsobisController < ApplicationController
   end
 
   def update
-    game = Game.find(params[:id])
-    game.update(game_params)
-    redirect_to asobi_path
+    @game = Game.find(params[:id])
+    if  @game.update(game_params)
+      redirect_to asobi_path
+    else
+      render :edit
+    end
   end
 
   def destroy

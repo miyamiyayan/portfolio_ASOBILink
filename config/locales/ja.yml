@@ -1,5 +1,22 @@
 ja:
   activerecord:
+    models:
+      game: 遊び
+      member: 会員
+    attributes:
+      game:
+        title: タイトル
+        address: 開催場所
+        introduction: イベント内容
+        number: 人数
+      member:
+        first_name: 苗字（漢字）
+        last_name: 名前（漢字）
+        last_name_kana: 苗字（カナ）
+        first_name_kana: 名前（カナ）
+        email: メールアドレス
+        user_name: ユーザーネーム
+
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
