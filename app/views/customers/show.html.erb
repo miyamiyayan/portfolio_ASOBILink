@@ -33,6 +33,11 @@
           <th class="table-secondary col-md-4">メールアドレス</th>
           <td class="col-md-8"><%= @member.email %></td>
         </tr>
+        <tr>
+          <th class="table-secondary col-md-4">ステータス</th>
+          <td class="col-md-8"><%= @member.is_active ? '一般会員' :'退会'  %></td>
+        </tr>
+
       </table>
     </div>
   </div>

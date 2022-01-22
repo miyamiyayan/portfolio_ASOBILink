@@ -3,6 +3,17 @@
 class Members::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
+  before_action :reject_inactive_user, only: [:create]
+
+  def reject_inactive_user
+    @member = Member.find_by(email: params[:member][:email])
+    if @member
+      if @member.valid_password?(params[:member][:password]) && !@member.is_active
+        redirect_to new_member_session_path
+      end
+    end
+  end
+
   # GET /resource/sign_in
   # def new
   #   super
