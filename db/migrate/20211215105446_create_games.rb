@@ -5,8 +5,8 @@ class CreateGames < ActiveRecord::Migration[5.2]
       t.integer :member_id,      null: false
       t.string :title,           null: false, default: ""
       t.string :address,         null: false, default: ""
-      t.float :latitude,         null: false, default: ""
-      t.float :longitude,        null: false, default: ""
+      t.float :latitude,         null: false
+      t.float :longitude,        null: false
 
       t.string :number,          null: false, default: ""
       t.string :image_id,        null: false, default: ""
