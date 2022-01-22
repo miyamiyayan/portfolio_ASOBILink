@@ -13,7 +13,6 @@ class Member < ApplicationRecord
   validates :email, {presence:true}
 
 
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

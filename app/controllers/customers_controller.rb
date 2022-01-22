@@ -27,7 +27,9 @@ class CustomersController < ApplicationController
 
   def withdraw
     member = Member.find(current_member.id)
-    member.update(is_active: false)
+    member.update(is_active: false, user_name:"退会済み")
+    games = Game.where(member_id: current_member.id)
+    games.update(is_active: false)
     reset_session
     redirect_to root_path
   end
